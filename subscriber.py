@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+from util import *
 
 # Define the MQTT broker details (your local Mosquitto broker)
 BROKER_ADDRESS = "localhost"  # Replace with "127.0.0.1" or your computer's IP if needed
@@ -17,6 +18,7 @@ def on_connect(client, userdata, flags, rc, properties=None):
 
 # Callback for when a message is received
 def on_message(client, userdata, msg):
+    add_data(msg.payload.decode())
     print(f"Message received on topic {msg.topic}: {msg.payload.decode()}")
 
 # Create an MQTT client instance with the new callback API version
