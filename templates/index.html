@@ -5,14 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello Kumar's World</title>
   <script>
-    // JavaScript function to change the text
-    function changeText() {
-      document.getElementById("world").innerText = "Sathiyakumar's World";
-    }
+      const apiUrl = "http://localhost:8000/get-data";
+
+      async function fetchData() {
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          console.log(data);
+        } catch (error) {
+          console.error('Failed to fetch data:', error);
+        }
+      }
+
+      // 2 sec intervals to hit api end point
+      let intervalId = setInterval(fetchData, 2000);
   </script>
 </head>
 <body>
-  <h1>Hello <span id="world">Kumar's World</span></h1>
-  <button onclick="changeText()">Change to Sathiyakumar's World</button>
+  <h2>IOT Insighter</h2>
 </body>
 </html>
