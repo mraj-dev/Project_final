@@ -1,5 +1,8 @@
 import paho.mqtt.client as mqtt
+
 import time
+import datetime
+
 import random
 
 # Define the MQTT broker details (your local Mosquitto broker)
@@ -29,9 +32,13 @@ try:
     client.loop_start()
 
   
-    while(True):
-        MESSAGE="Count "
-        MESSAGE+=str(random.randint(1,1000))
+    while(True): 
+        time_stamp=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        x=round(random.randint(1,10)+random.random(),2)
+        y=round(random.randint(1,10)+random.random(),2)
+        speed=random.randint(1,10)
+        
+        MESSAGE=f"{time_stamp} {x} {y} {speed}"
         time.sleep(1)
         
         client.publish(TOPIC, MESSAGE)

@@ -1,5 +1,6 @@
-from typing import *
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
 from .util import *
 
 app = FastAPI()
@@ -10,4 +11,6 @@ def read_root():
 
 @app.get("/get-data")
 def get_data():
-    return api_request()
+    content = api_request()
+    response=JSONResponse(content=content )
+    return response

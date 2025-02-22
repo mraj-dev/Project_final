@@ -6,12 +6,13 @@ from datetime import datetime
 
 def generate(file_name):
     data=csv_request()
-    print(data)
+
     try:
         with open(file_name,'w',newline='') as file:
             writer= csv.writer(file)
+            writer.writerow(['time-stamp','time','x','y','speed'])
             for item in data:
-                writer.writerow([item])
+                writer.writerow(item)
         print("generate file")
     except Exception as e:
         print(e)

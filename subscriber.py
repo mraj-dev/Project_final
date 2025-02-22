@@ -18,7 +18,8 @@ def on_connect(client, userdata, flags, rc, properties=None):
 
 # Callback for when a message is received
 def on_message(client, userdata, msg):
-    add_data(msg.payload.decode())
+    data=(msg.payload.decode()).split()
+    add_data(data)
     print(f"Message received on topic {msg.topic}: {msg.payload.decode()}")
 
 # Create an MQTT client instance with the new callback API version
